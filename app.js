@@ -7,9 +7,10 @@ const jobs_route = require("./routes/jobs")
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
+app.use(express.json());
 app.use("/api/v1/auth",auth_route)
 app.use("/api/v1/jobs",jobs_route)
-app.use(express.json());
+
 const connectDB = require("./db/connect")
 // extra packages
 
