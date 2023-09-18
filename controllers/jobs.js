@@ -7,7 +7,7 @@ const getJob = async(req,res) =>{
 
 }
 const createJob = async(req,res) =>{
-   res.status(200).send("create Job")
+   res.status(200).json(req.user)
 }
 const deleteJob = async(req,res)=>{
     res.status(200).send("delete Job")
