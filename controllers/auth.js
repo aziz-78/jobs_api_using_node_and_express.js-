@@ -2,6 +2,7 @@ const {StatusCodes} = require("http-status-codes")
 const user = require("../models/User")
 const BadRequestError = require("../errors/bad-request")
 const UnauthenticatedError = require("../errors/unauthenticated")
+const helmet = require("helmet")
 require('dotenv').config()
 const register = async(req,res)=>{
     
