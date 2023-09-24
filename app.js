@@ -5,6 +5,10 @@ const app = express();
 const auth_route = require("./routes/auth")
 const jobs_route = require("./routes/jobs")
 const Authentication = require("./middleware/authentication")
+const helmet = require("helmet")
+const cors = require("cors")
+const xs_clean = require("xss-clean")
+const rate_limiter = require("express-rate-limit")
 // error handler
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
@@ -15,7 +19,12 @@ app.use("/api/v1/jobs",Authentication,jobs_route)
 
 const connectDB = require("./db/connect")
 // extra packages
-
+app.use(helmet())
+app.use(cors())
+app.use(xs_clean())
+app.use(rate_limiter({
+  windowMs:15*60*1000,
+max:100}))
 // routes
 app.get('/', (req, res) => {
   res.send('jobs api');
